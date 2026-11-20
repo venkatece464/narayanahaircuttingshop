@@ -353,3 +353,30 @@ document.addEventListener('keydown', (e) => {
         closeImageModal();
     }
 });
+
+/**
+ * Switch Dollu & Sannai Melam Photos
+ */
+function switchMelamPhoto(type, btnElement) {
+    const mainImg = document.getElementById('main-dollu-img');
+    if (!mainImg) return;
+
+    document.querySelectorAll('.btn-melam-tab').forEach(b => b.classList.remove('active'));
+    if (btnElement) btnElement.classList.add('active');
+
+    if (type === 'marriage') {
+        mainImg.src = './assets/images/marriage_melam.jpg';
+        mainImg.onerror = function() {
+            if (window.EMBEDDED_IMAGES && window.EMBEDDED_IMAGES.marriage_melam) {
+                this.src = window.EMBEDDED_IMAGES.marriage_melam;
+            }
+        };
+    } else {
+        mainImg.src = './assets/images/dollu_sannai.jpg';
+        mainImg.onerror = function() {
+            if (window.EMBEDDED_IMAGES && window.EMBEDDED_IMAGES.dollu) {
+                this.src = window.EMBEDDED_IMAGES.dollu;
+            }
+        };
+    }
+}

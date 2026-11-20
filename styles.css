@@ -730,58 +730,214 @@ a {
     color: #FFF;
 }
 
-/* Traditional Dollu & Sannai Section */
-.image-3d-frame {
-    position: relative;
-    border-radius: 28px;
-    overflow: hidden;
-    border: 2px solid rgba(234, 88, 12, 0.4);
-    box-shadow: 0 0 30px rgba(234, 88, 12, 0.3);
+/* Traditional Dollu & Sannai Section - Modern 3D Luxury Showcase */
+.melam-showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2.5rem;
 }
 
-.melam-badge {
+@media (max-width: 900px) {
+    .melam-showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+    }
+}
+
+.melam-card-3d {
+    background: rgba(18, 24, 38, 0.7);
+    border: 1px solid rgba(234, 88, 12, 0.3);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.melam-card-3d:hover {
+    border-color: rgba(234, 88, 12, 0.7);
+    box-shadow: 0 16px 40px rgba(234, 88, 12, 0.25);
+    transform: translateY(-6px);
+}
+
+.melam-card-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+}
+
+@media (max-width: 480px) {
+    .melam-card-img-wrapper {
+        height: 210px;
+    }
+}
+
+.melam-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.melam-card-3d:hover .melam-card-img {
+    transform: scale(1.06);
+}
+
+.melam-card-badge {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(15, 23, 42, 0.85);
+    bottom: 16px;
+    left: 16px;
+    background: rgba(15, 23, 42, 0.88);
     backdrop-filter: blur(10px);
-    border: 1px solid var(--copper);
+    border: 1px solid rgba(234, 88, 12, 0.6);
     color: var(--copper);
-    padding: 0.5rem 1rem;
+    padding: 0.45rem 1rem;
     border-radius: 30px;
     font-weight: 700;
     font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
-.events-list-grid {
+.melam-card-badge.wedding-badge {
+    border-color: var(--gold-glow);
+    color: var(--gold-glow);
+    background: rgba(15, 23, 42, 0.92);
+}
+
+.melam-card-badge.gruha-badge {
+    border-color: #10B981;
+    color: #34D399;
+    background: rgba(15, 23, 42, 0.92);
+}
+
+.melam-card-badge.funeral-badge {
+    border-color: #94A3B8;
+    color: #E2E8F0;
+    background: rgba(15, 23, 42, 0.92);
+}
+
+.melam-card-badge.festival-badge {
+    border-color: #F59E0B;
+    color: #FBBF24;
+    background: rgba(15, 23, 42, 0.92);
+}
+
+.melam-card-body {
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.melam-subtag {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--copper);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.melam-card-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #FFF;
+    margin-bottom: 0.8rem;
+}
+
+.melam-card-text {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+.melam-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex-grow: 1;
+}
+
+.melam-highlights li {
+    font-size: 0.88rem;
+    color: #E2E8F0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+}
+
+.melam-highlights li i {
+    margin-top: 3px;
+    font-size: 0.8rem;
+    color: var(--copper);
+}
+
+.melam-card-footer {
+    margin-top: auto;
+}
+
+.btn-block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* 4 Ceremony Quick Feature Badges Grid */
+.ceremonies-quick-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin-top: 1.8rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
 }
 
-.event-item {
+@media (max-width: 900px) {
+    .ceremonies-quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .ceremonies-quick-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ceremony-badge-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-glass);
     border-radius: 16px;
     padding: 1.2rem;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
-.event-item:hover {
+.ceremony-badge-card:hover {
     background: rgba(234, 88, 12, 0.08);
     border-color: rgba(234, 88, 12, 0.4);
+    transform: translateY(-3px);
 }
 
-.event-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+.ceremony-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
     background: rgba(234, 88, 12, 0.15);
+    border: 1px solid rgba(234, 88, 12, 0.3);
     color: var(--copper);
     display: flex;
     align-items: center;
@@ -790,15 +946,17 @@ a {
     flex-shrink: 0;
 }
 
-.event-item h4 {
-    font-size: 1.1rem;
+.ceremony-badge-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
     color: #FFF;
     margin-bottom: 0.2rem;
 }
 
-.event-item p {
-    font-size: 0.85rem;
+.ceremony-badge-card p {
+    font-size: 0.8rem;
     color: var(--text-secondary);
+    margin: 0;
 }
 
 /* Makeup Section */

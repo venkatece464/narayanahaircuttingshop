@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://narayanahaircuttingshop-chi.vercel.app/
+Sitemap: https://narayanahaircuttingshop.dpdns.org/sitemap.xml
