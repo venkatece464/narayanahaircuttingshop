@@ -14,8 +14,9 @@ const marriageMelamPath = path.join(imgDir, 'marriage_melam.jpg');
 const gruhaPath = path.join(imgDir, 'gruhapravesham_melam.jpg');
 const lastRitesPath = path.join(imgDir, 'last_rites_melam.jpg');
 const festivalPath = path.join(imgDir, 'festival_melam.jpg');
+const chairPath = path.join(imgDir, 'barber_chair.svg');
 
-console.log('Reading image files including full owner photos and all ceremony photos...');
+console.log('Reading image files including full owner photos, ceremony photos and barber chair...');
 
 const heroB64 = 'data:image/jpeg;base64,' + fs.readFileSync(heroPath).toString('base64');
 const dolluB64 = 'data:image/jpeg;base64,' + fs.readFileSync(dolluPath).toString('base64');
@@ -28,6 +29,7 @@ const marriageMelamB64 = 'data:image/jpeg;base64,' + fs.readFileSync(marriageMel
 const gruhaB64 = 'data:image/jpeg;base64,' + fs.readFileSync(gruhaPath).toString('base64');
 const lastRitesB64 = 'data:image/jpeg;base64,' + fs.readFileSync(lastRitesPath).toString('base64');
 const festivalB64 = 'data:image/jpeg;base64,' + fs.readFileSync(festivalPath).toString('base64');
+const chairB64 = 'data:image/svg+xml;base64,' + fs.readFileSync(chairPath).toString('base64');
 
 const jsContent = `/* Auto-generated embedded fallback image data URIs for 100% deployment reliability */
 window.EMBEDDED_IMAGES = {
@@ -41,7 +43,8 @@ window.EMBEDDED_IMAGES = {
     marriage_melam: "${marriageMelamB64}",
     gruhapravesham_melam: "${gruhaB64}",
     last_rites_melam: "${lastRitesB64}",
-    festival_melam: "${festivalB64}"
+    festival_melam: "${festivalB64}",
+    barber_chair: "${chairB64}"
 };
 `;
 

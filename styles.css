@@ -1725,28 +1725,60 @@ a {
     font-size: 0.85rem;
 }
 
-/* Floating Quick Actions */
+/* Floating Quick Actions with Real Flying Bird Toggle */
 .floating-quick-actions {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    align-items: flex-end;
+    gap: 0.9rem;
     z-index: 999;
 }
 
+/* Action Items Container (WhatsApp, Instagram, Call) */
+.quick-action-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.8rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(18px) scale(0.92);
+    transform-origin: bottom right;
+    transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.32s ease;
+}
+
+/* Open State for Quick Actions */
+.floating-quick-actions.is-open .quick-action-items {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
 .float-btn {
-    width: 56px;
-    height: 56px;
+    position: relative;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #FFF;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    transition: var(--transition);
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+    text-decoration: none;
+    outline: none;
+}
+
+.float-btn:focus-visible {
+    box-shadow: 0 0 0 3px #FFF, 0 0 15px var(--primary-gold);
 }
 
 .float-wa {
@@ -1754,14 +1786,171 @@ a {
     box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
 }
 
-.float-call {
-    background: linear-gradient(135deg, var(--primary-gold), var(--dark-gold));
+.float-ig {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    box-shadow: 0 8px 25px rgba(225, 48, 108, 0.55);
+}
+
+.float-yanadi {
+    background: linear-gradient(135deg, #f59e0b, #b45309);
     color: #0F172A;
     box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
 }
 
+.float-venkat {
+    background: linear-gradient(135deg, #38bdf8, #0284c7);
+    color: #0F172A;
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.5);
+}
+
 .float-btn:hover {
-    transform: scale(1.15) translateY(-3px);
+    transform: scale(1.14) translateY(-3px);
+}
+
+/* Floating Action Tooltip / Label */
+.float-label {
+    position: absolute;
+    right: 120%;
+    white-space: nowrap;
+    background: rgba(15, 23, 42, 0.95);
+    color: #F8FAFC;
+    padding: 0.35rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(10px);
+    transition: all 0.25s ease;
+}
+
+.float-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(15, 23, 42, 0.95);
+}
+
+.float-btn:hover .float-label,
+.float-btn:focus-visible .float-label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ==========================================================================
+   Modern Revolving Barber Cutting-Shop Chair Floating Toggle Button
+   Pure Standalone Cutting Chair - No Disc, No Border, No Clunky Background
+   ========================================================================== */
+.chair-toggle-btn {
+    position: relative;
+    width: 68px;
+    height: 68px;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    perspective: 800px;
+    overflow: visible;
+}
+
+.chair-toggle-btn:focus-visible {
+    filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.9));
+}
+
+/* Continuous 360-Degree Rotation Keyframe Animation (Reversed: Left to Right rotateY from 0deg to -360deg) */
+@keyframes barberChairSpin {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(-360deg);
+    }
+}
+
+@keyframes barberChairRevolve {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(-360deg);
+    }
+}
+
+/* Barber Chair Revolving Visual Stage */
+.barber-chair-visual {
+    width: 64px;
+    height: 64px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    overflow: visible;
+}
+
+/* Barber Chair SVG Image with Continuous 360-Degree Rotation */
+.barber-chair-svg-img,
+#barber-chair-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 60px;
+    max-height: 60px;
+    object-fit: contain;
+    pointer-events: auto;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    animation: barberChairSpin 6s linear infinite;
+    will-change: transform;
+    filter: drop-shadow(0 6px 14px rgba(245, 158, 11, 0.55)) drop-shadow(0 2px 5px rgba(0, 0, 0, 0.65));
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Clean Pause on Hover (Never overlaps buttons, badges, or text) */
+.chair-toggle-btn:hover .barber-chair-svg-img,
+.chair-toggle-btn:hover #barber-chair-img,
+.barber-chair-svg-img:hover,
+#barber-chair-img:hover,
+.chair-toggle-btn:focus .barber-chair-svg-img,
+.chair-toggle-btn:focus #barber-chair-img {
+    animation-play-state: paused;
+}
+
+.chair-toggle-btn:hover {
+    transform: scale(1.12);
+}
+
+.chair-toggle-btn:hover .barber-chair-svg-img {
+    filter: drop-shadow(0 8px 22px rgba(245, 158, 11, 0.85)) drop-shadow(0 3px 8px rgba(0, 0, 0, 0.75));
+}
+
+/* Open State for Floating Action Group */
+.floating-quick-actions.is-open .chair-toggle-btn {
+    transform: scale(1.08);
+}
+
+.floating-quick-actions.is-open .barber-chair-svg-img {
+    filter: drop-shadow(0 8px 24px rgba(56, 189, 248, 0.85)) drop-shadow(0 3px 8px rgba(0, 0, 0, 0.8));
+}
+
+.floating-quick-actions.is-open .barber-chair-visual {
+    animation-play-state: paused;
 }
 
 /* Toast Notifications */
@@ -2041,10 +2230,28 @@ a {
         gap: 0.6rem;
     }
 
+    .chair-toggle-btn {
+        width: 58px;
+        height: 58px;
+    }
+
+    .barber-chair-visual {
+        width: 52px;
+        height: 52px;
+    }
+
+    .quick-action-items {
+        gap: 0.6rem;
+    }
+
     .float-btn {
         width: 48px;
         height: 48px;
         font-size: 1.35rem;
+    }
+
+    .float-label {
+        display: none;
     }
 
     .modal-content-glass {

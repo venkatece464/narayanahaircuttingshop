@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollSpy();
     initParticleCanvas();
     initImageDeploymentFallbacks();
+    initChairQuickActions();
 });
 
 /**
@@ -39,6 +40,8 @@ function triggerImageFallback(img) {
         img.src = window.EMBEDDED_IMAGES.yanadi;
     } else if (img.classList.contains('venkat-img') && window.EMBEDDED_IMAGES.venkat) {
         img.src = window.EMBEDDED_IMAGES.venkat;
+    } else if ((img.id === 'barber-chair-img' || img.classList.contains('barber-chair-svg-img')) && window.EMBEDDED_IMAGES.barber_chair) {
+        img.src = window.EMBEDDED_IMAGES.barber_chair;
     }
 }
 
@@ -379,4 +382,64 @@ function switchMelamPhoto(type, btnElement) {
             }
         };
     }
+}
+
+/**
+ * Modern Revolving Barber Cutting-Shop Chair Action Menu Controller
+ */
+function initChairQuickActions() {
+    const container = document.getElementById('quick-contact-menu');
+    const toggleBtn = document.getElementById('chair-toggle-btn');
+    const actionItems = document.getElementById('quick-action-items');
+
+    if (!container || !toggleBtn || !actionItems) return;
+
+    function openMenu() {
+        container.classList.add('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        actionItems.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeMenu() {
+        container.classList.remove('is-open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        actionItems.setAttribute('aria-hidden', 'true');
+    }
+
+    function toggleMenu() {
+        const isOpen = container.classList.contains('is-open');
+        if (isOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    }
+
+    // Click toggle on barber chair button
+    toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+    });
+
+    // Close when clicking outside of the quick contact menu
+    document.addEventListener('click', (e) => {
+        if (!container.contains(e.target)) {
+            closeMenu();
+        }
+    });
+
+    // Close on Escape key press
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && container.classList.contains('is-open')) {
+            closeMenu();
+            toggleBtn.focus();
+        }
+    });
+
+    // When clicking any action button inside, close smoothly
+    actionItems.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            setTimeout(closeMenu, 250);
+        });
+    });
 }
